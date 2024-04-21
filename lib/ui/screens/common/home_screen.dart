@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stok_takip/core/base/base_view.dart';
 import 'package:flutter_stok_takip/core/base/base_widget.dart';
+import 'package:flutter_stok_takip/ui/screens/common/widgets/navigation_card.dart';
 import 'package:flutter_stok_takip/ui/viewmodels/common/home_viewmodel.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,15 +18,23 @@ class _HomeScreenState extends BaseWidget<HomeScreen> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: _buildAppBar(),
-          body: Center(
-            child: Text(model.counter.toString()),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-          ),
+          body: _buildGridView(model),
         );
       },
       model: HomeViewModel(),
+    );
+  }
+
+  GridView _buildGridView(HomeViewModel model) {
+    return GridView.builder(
+      itemCount: model.pages.length,
+      padding: EdgeInsets.all(8),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+      itemBuilder: (context, index) => NavigationCard(
+        homeItemModel: model.pages[index],
+      ),
     );
   }
 
