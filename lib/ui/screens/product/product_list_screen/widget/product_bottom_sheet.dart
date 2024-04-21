@@ -3,9 +3,14 @@ import 'package:flutter_stok_takip/core/models/product/product_model.dart';
 
 class ProductBottomSheet extends StatelessWidget {
   final ProductModel product;
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
+
   const ProductBottomSheet({
     super.key,
     required this.product,
+    this.onDelete,
+    this.onEdit,
   });
 
   @override
@@ -33,7 +38,7 @@ class ProductBottomSheet extends StatelessWidget {
       width: double.infinity,
       child: OutlinedButton.icon(
         label: Text("Düzenle"),
-        onPressed: () {},
+        onPressed: onEdit,
         icon: Icon(
           Icons.edit,
         ),
@@ -46,7 +51,7 @@ class ProductBottomSheet extends StatelessWidget {
       width: double.infinity,
       child: OutlinedButton.icon(
         label: Text("Sil"),
-        onPressed: () {},
+        onPressed: onDelete,
         icon: Icon(
           Icons.delete,
         ),

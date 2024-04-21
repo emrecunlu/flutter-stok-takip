@@ -18,4 +18,20 @@ class ProductRepository {
 
     return _box.values.toList();
   }
+
+  Future<void> update(String id, ProductModel model) async {
+    final _box = await productBox;
+
+    if (_box.get(id) != null) {
+      return await _box.put(id, model);
+    }
+  }
+
+  Future<void> delete(String id) async {
+    final _box = await productBox;
+
+    if (_box.get(id) != null) {
+      return await _box.delete(id);
+    }
+  }
 }

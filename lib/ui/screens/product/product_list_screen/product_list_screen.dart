@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stok_takip/core/base/base_view.dart';
+import 'package:flutter_stok_takip/core/services/navigation_service.dart';
+import 'package:flutter_stok_takip/ui/screens/product/product_create_screen/product_create_screen.dart';
 import 'package:flutter_stok_takip/ui/screens/product/product_list_screen/widget/build_product.dart';
 import 'package:flutter_stok_takip/ui/screens/product/product_list_screen/widget/product_bottom_sheet.dart';
 import 'package:flutter_stok_takip/ui/viewmodels/product/product_list_viewmodel.dart';
+import 'package:flutter_stok_takip/ui/widgets/common/custom_page_sheet.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -48,6 +51,20 @@ class _ProductListScreenState extends State<ProductListScreen> {
               context: context,
               builder: (context) => ProductBottomSheet(
                 product: model.products[index],
+                onDelete: () {
+                  model.delete(model.products[index].id);
+                },
+                onEdit: () {
+                  NavigationService.goBack();
+                  showPageSheet(
+                          page: ProductCreateScreen(
+                            toUpdate: model.products[index],
+                          ),
+                          context: context)
+                      .then(
+                    (value) => model.getAllProducts(),
+                  );
+                },
               ),
             );
           },
