@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class BuildSubmitButon extends StatelessWidget {
-  final bool? isUpdate;
+  final bool isUpdate;
   final void Function()? onPressed;
-  const BuildSubmitButon({super.key, this.isUpdate, required this.onPressed});
+  const BuildSubmitButon({
+    super.key,
+    this.isUpdate = false,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +16,8 @@ class BuildSubmitButon extends StatelessWidget {
       height: 45,
       child: ElevatedButton.icon(
         onPressed: onPressed,
-        icon: Icon(isUpdate == null ? Icons.save : Icons.refresh),
-        label: Text(isUpdate == null ? 'Kaydet' : 'Güncelle'),
+        icon: Icon(!isUpdate ? Icons.save : Icons.refresh),
+        label: Text(!isUpdate ? 'Kaydet' : 'Güncelle'),
       ),
     );
   }

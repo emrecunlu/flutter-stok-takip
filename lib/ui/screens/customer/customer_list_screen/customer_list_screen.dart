@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stok_takip/core/base/base_view.dart';
+import 'package:flutter_stok_takip/core/services/navigation_service.dart';
+import 'package:flutter_stok_takip/ui/screens/customer/customer_add_screen/customer_add_screen.dart';
 import 'package:flutter_stok_takip/ui/screens/customer/customer_list_screen/widgets/build_customer.dart';
 import 'package:flutter_stok_takip/ui/viewmodels/customer/customer_list_viewmodel.dart';
+import 'package:flutter_stok_takip/ui/widgets/common/custom_page_sheet.dart';
 
 class CustomerListScreen extends StatelessWidget {
   const CustomerListScreen({super.key});
@@ -26,7 +29,7 @@ class CustomerListScreen extends StatelessWidget {
 
   Center _buildEmptyCustomers() {
     return Center(
-      child: Text("Müşteri kaydı bulunamadı."),
+      child: Text("Müşteri Kaydı Bulunamadı"),
     );
   }
 

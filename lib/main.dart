@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stok_takip/core/models/customer/customer_model.dart';
+import 'package:flutter_stok_takip/core/models/product/product_model.dart';
 import 'package:flutter_stok_takip/core/services/navigation_service.dart';
 import 'package:flutter_stok_takip/locator.dart';
 import 'package:flutter_stok_takip/ui/screens/common/home_screen.dart';
@@ -10,6 +11,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(CustomerModelAdapter());
+  Hive.registerAdapter(ProductModelAdapter());
 
   setupLocator();
 

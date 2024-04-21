@@ -29,9 +29,8 @@ class _HomeScreenState extends BaseWidget<HomeScreen> {
     return GridView.builder(
       itemCount: model.pages.length,
       padding: EdgeInsets.all(8),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
+      gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (context, index) => NavigationCard(
         homeItemModel: model.pages[index],
       ),
