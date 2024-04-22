@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_stok_takip/ui/screens/sales/sales_create_screen/widgets/build_basket_list.dart';
 import 'package:flutter_stok_takip/ui/screens/sales/sales_create_screen/widgets/build_product_list.dart';
 import 'package:flutter_stok_takip/ui/viewmodels/sales/sales_create_viewmodel.dart';
 import 'package:flutter_stok_takip/ui/widgets/common/custom_page_sheet.dart';

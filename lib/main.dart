@@ -32,7 +32,7 @@ class StokTakipApp extends StatelessWidget {
       navigatorKey: NavigationService.globalKey,
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.black,
+        colorSchemeSeed: Colors.green,
         brightness: Brightness.dark,
       ),
       home: HomeScreen(),
