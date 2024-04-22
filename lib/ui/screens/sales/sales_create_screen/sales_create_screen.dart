@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stok_takip/core/base/base_view.dart';
 import 'package:flutter_stok_takip/core/base/base_widget.dart';
+import 'package:flutter_stok_takip/ui/screens/sales/sales_create_screen/widgets/build_basket_form.dart';
+import 'package:flutter_stok_takip/ui/screens/sales/sales_create_screen/widgets/build_basket_list.dart';
 import 'package:flutter_stok_takip/ui/screens/sales/sales_create_screen/widgets/build_customer_dropdown.dart';
-import 'package:flutter_stok_takip/ui/screens/sales/sales_create_screen/widgets/build_basket_items.dart';
 import 'package:flutter_stok_takip/ui/viewmodels/sales/sales_create_viewmodel.dart';
+import 'package:flutter_stok_takip/ui/widgets/common/build_submit_button.dart';
 
 class SalesCreateScreen extends StatefulWidget {
   const SalesCreateScreen({super.key});
@@ -24,17 +26,17 @@ class _SalesCreateScreenState extends BaseWidget<SalesCreateScreen> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: _buildAppBar(),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BuildCustomerDropdown(customers: model.customers),
-                  verticalMargin(10),
-                  _buildProductsForm(model),
-                ],
-              ),
+          body: Padding(
+            padding: EdgeInsets.all(8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BuildCustomerDropdown(),
+                verticalMargin(10),
+                BuildBasketForm(),
+                BuildBasketList(),
+                _buildSubmitButton(model)
+              ],
             ),
           ),
         );
@@ -42,13 +44,12 @@ class _SalesCreateScreenState extends BaseWidget<SalesCreateScreen> {
     );
   }
 
-  Widget _buildProductsForm(SalesCreateViewModel model) {
-    return AbsorbPointer(
-      absorbing: model.customer == null,
-      child: Opacity(
-        opacity: model.customer == null ? 0.5 : 1,
-        child: BuildBasketItems(),
-      ),
+  Widget _buildSubmitButton(SalesCreateViewModel viewModel) {
+    return Visibility(
+      visible: viewModel.basketItems.length > 0,
+      child: BuildSubmitButon(onPressed: () {
+        viewModel.submit();
+      }),
     );
   }
 
